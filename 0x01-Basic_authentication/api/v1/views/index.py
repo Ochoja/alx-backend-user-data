@@ -35,6 +35,6 @@ def unauthorized():
 
 @app_views.route('/forbidden/', strict_slashes=False)
 def forbidden():
-    """Unauthorized user
+    """Forbidden resource
     """
-    abort(401)
+    abort(403)
