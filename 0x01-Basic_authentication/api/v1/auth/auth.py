@@ -8,21 +8,25 @@ class Auth:
     """Authentication class"""
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """Returns path"""
-        # Remove trailing slash
-        for route in excluded_paths:
-            if route != '/' and route[-1] == '/':
-                route = route[:-1]
+        """Return true if path is require else 
+           false
+        """
+        # Remove trailing slash in excluded paths
+        if excluded_paths is not None and path:
+            for i in range(len(excluded_paths)):
+                if excluded_paths[i] != '/' and excluded_paths[i][-1] == '/':
+                    excluded_paths[i] = excluded_paths[i][:-1]
 
-        if path != '/' and path[-1] == '/':
+        # Remove trailing slash in path
+        if path is not None and path != '/' and path[-1] == '/' and excluded_paths:
             path = path[:-1]
 
-        if path in excluded_paths and excluded_paths is not None:
-            return False
-        elif path is None:
+        if not path or not excluded_paths:  # empty arguments or None
             return True
-        else:
+        elif path in excluded_paths:
             return False
+        else:
+            return True
 
     def authorization_header(self, request=None) -> str:
         """Returns request"""
