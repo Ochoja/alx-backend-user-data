@@ -8,11 +8,10 @@ class Auth:
     """Authentication class"""
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """Return true if path is require else 
-           false
+        """Requires routes that don'nt need auth |
+            Return true if path is require else false
         """
-        # Remove trailing slash in excluded paths
-        if excluded_paths is not None and path:
+        if excluded_paths is not None and path:  # Remove trailing slash in excluded paths
             for i in range(len(excluded_paths)):
                 if excluded_paths[i] != '/' and excluded_paths[i][-1] == '/':
                     excluded_paths[i] = excluded_paths[i][:-1]
