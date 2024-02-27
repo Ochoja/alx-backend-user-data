@@ -8,8 +8,8 @@ class Auth:
     """Authentication class"""
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """Requires routes that don'nt need auth |
-            Return true if path is require else false
+        """Defines routes that don'nt need auth |
+            Return true if path is not part of list
         """
         # Remove trailing slash in excluded paths
         if excluded_paths is not None and path:
@@ -31,7 +31,11 @@ class Auth:
 
     def authorization_header(self, request=None) -> str:
         """Returns request"""
-        return None
+        if request is None:
+            return None
+        else:
+            header = request.headers.get('Authorization')
+            return header if header else None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Returns request"""
