@@ -23,6 +23,9 @@ if auth:
 
 @app.before_request
 def check_route():
+    """Run function before every request,
+       checking if Auth is required
+    """
     if auth is not None:
         excluded_paths = ['/api/v1/status/',
                           '/api/v1/unauthorized/', '/api/v1/forbidden/']
