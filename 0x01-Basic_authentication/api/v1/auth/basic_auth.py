@@ -22,7 +22,7 @@ class BasicAuth(Auth):
             self, base64_authorization_header: str) -> str:
         """Return decoded value of base64 string"""
         if type(base64_authorization_header) is not str:
-            return "None"
+            return None
         else:
             try:
                 b64bytes = base64_authorization_header.encode('utf-8')
