@@ -42,6 +42,6 @@ class BasicAuth(Auth):
             try:
                 return tuple(decoded_base64_authorization_header.split(":"))
             except Exception:
-                return None
+                return (None, None)
         else:
-            return None
+            return (None, None)
