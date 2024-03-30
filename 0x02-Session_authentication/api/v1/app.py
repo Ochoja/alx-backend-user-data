@@ -38,6 +38,8 @@ def check_route():
             abort(401)
         if not auth.current_user(request):
             abort(403)
+        else:
+            request.current_user = auth.current_user(request)
 
 
 @app.errorhandler(404)
